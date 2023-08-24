@@ -1,13 +1,21 @@
-import { useState } from 'react'
+// Gallery.js
+import { useContext } from 'react'
+import { DataContext } from '../context/DataContext'
+import GalleryItem from './GalleryItem'
 
-function GalleryItem(props){
-    let [view, setView] = useState(false)
-
+function Gallery(){
+    const data = useContext(DataContext)
+    
+    const display = data.map((item,index) => {
+        return (
+            <GalleryItem item={item} key={index} />
+        )
+    })
     return (
-        <div onClick={() => setView(!view)} style={{'display': 'inline-block'}}>
-            <p>One Gallery Item</p>
+        <div>
+            {display}
         </div>
     )
 }
 
-export default GalleryItem 
+export default Gallery
