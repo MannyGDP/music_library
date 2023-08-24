@@ -7,30 +7,20 @@ function App(){
     let [message, setMessage] = useState('Search for Music!')
     let [data, setData] = useState([])
 
-  const API_URL = 'https://itunes.apple.com/search?term='
-
     useEffect(() => {
-      if (search){
-
         const fetchData = async () => {
           document.title = `${search} Music`
           const response = await fetch('https://itunes.apple.com/search?term=the%20grateful%20dead')
-          const resDate = await response.json()
-          if (resDate.results.length){
-            setData(resData.results)
+          const resData = await response.json()
+          if (resData.results.length) {
+          setData(resData.results)
           } else {
-          setMessage('Not Found')
+            setMessage('Not Found')
           }
         }
-        fetchData()
-      }
-    }, [search])
-
-const handleSearch = (e, term) => {
-e.preventDefault()
-setSearch(term)
-}
-
+          fetchData()
+        }, [])
+        
     return (
         <div>
             <SearchBar />
